@@ -27,3 +27,15 @@ exports.deleteReview = async (isbn, user) => {
   }
   throw new Error("Book not found");
 };
+exports.getBooksCallback = (callback) => {
+  setTimeout(() => {
+    callback(null, books);
+  }, 1000);
+};
+exports.getBookByISBNCb = (isbn) =>
+  new Promise((resolve, reject) => {
+    const book = books.find((b) => b.isbn === isbn);
+    book ? resolve(book) : reject("Book not found");
+  });
+
+
